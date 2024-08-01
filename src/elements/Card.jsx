@@ -1,15 +1,14 @@
-
 import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
-const Card = ({ data }) => {
+const Card = ({ data, url }) => {
     return (
         <div className="h-full w-full grid grid-cols-2 xl:grid-cols-4 gap-4 pt-4">
-            {data?.map((item) => (
+            {data?.slice(0, 4).map((item) => (
                 <div key={item.id}>
                     <Link
-                        to={`#`}
-                        className="h-[30vh] sm:h-[40vh] xl:h-[50vh] w-full flex flex-col justify-between bg-red-200 rounded-lg cursor-pointer drop-shadow-lg  hover:-translate-y-3 transition-all ease-in-out duration-300"
+                        to={`${url}/${item.id}`}
+                        className="h-[30vh] sm:h-[40vh] xl:h-[50vh] w-full flex flex-col justify-between bg-red-200 rounded-lg cursor-pointer drop-shadow-lg hover:-translate-y-3 transition-all ease-in-out duration-300"
                         style={{
                             background: `url(${item.img})`,
                             backgroundSize: "cover",

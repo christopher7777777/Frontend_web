@@ -29,28 +29,31 @@ const LandingPage = () => {
               setOpen(!open);
             }}
           />
-          <a href="/Signin">
-          <h1
-            className="font-bold text-yellow-600 text-3xl hidden md:flex lg:flex"
-            >Explore.</h1>
-          </a>
-          
-            {/*navigation bar items*/}
-            <div className="ml-auto">
-              <div className=" items-center hidden md:flex gap-24">
-            {landingHeaderLinks.slice(0,4).map((item)=>(
+          <Link
+            to="/signup"
+            className="sm:flex hidden pl-4 md:pl-8 text-orange-600 font-bold text-2xl lg:text-4xl hover:cursor-pointer"
+            style={{ textShadow: "4px 4px 4px rgba(0, 0, 0, 0.4)" }}
+          >
+            Explore.
+          </Link>
+          <div className="hidden sm:flex h-full w-full items-center justify-center gap-9 lg:gap-14">
+            {landingHeaderLinks.slice(0, 4).map((item) => (
               <>
-              <li className="list-none text-white text-2xl hover:border-b-4 border-yellow-400 duration-200 cursor-pointer">{item.title}</li>
+                <Link
+                  key={item.id}
+                  to={item.link}
+                  className="text-base text-white md:text-lg lg:text-xl hover:border-b-4 hover:border-b-yellow-500"
+                >
+                  {item.title}
+                </Link>
               </>
             ))}
-            </div> </div>
-            
-            
+          </div>
           <img
             style={{
               clipPath: "polygon(0 0, 100% 0, 100% 90%, 75% 100%, 0 50%)",
             }}
-            className="h-52 w-40 object-cover ml-auto"
+            className="h-36 md:h-52 lg:h-64 w-40 sm:w-52 md:w-64 object-cover"
             src={HeaderImage}
             alt="image"
           />
@@ -60,15 +63,15 @@ const LandingPage = () => {
         <motion.div
           initial={{ x: open ? 600 : 0 }}
           animate={{ x: open ? 0 : 600 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
           className={`
             h-screen w-[80%] sm:hidden fixed top-0 right-0 bg-white z-50 rounded-lg`}
         >
           {landingHeaderLinks.map((item) => (
             <>
               <Link
-                className="flex font-bold text-black-500 text-lg pl-4 py-1 
-                cursor-pointer hover:bg-gray-400 hover:rounded-lg"
+                className="flex font-bold text-gray-500 text-lg pl-4 py-1 
+                cursor-pointer hover:bg-gray-100 hover:rounded-lg"
                 key={item.id}
                 to={item.link}
               >
@@ -81,7 +84,7 @@ const LandingPage = () => {
         {/* hero */}
         <div className="w-full text-center text-white">
           <p className="text-lg font-bold md:text-xl lg:text-2xl bg-gradient-to-b from-gray-400 to-gray-100 text-transparent bg-clip-text">
-            The Country of Himalayas
+            The Country of Himalays
           </p>
           <h1
             className="font-bold text-7xl md:text-8xl lg:text-9xl"
@@ -100,22 +103,23 @@ const LandingPage = () => {
             </p>
           </div>
           {/* second side */}
-          <div className="h-full w-full flex items-end justify-end">
-            <div className="h-20 w-full items-center flex gap-4 flex-wrap pl-2 backdrop-blur-sm ">
+          <div className="h-full flex items-end justify-end gap-4">
+            <div className="h-16 flex items-center flex-wrap gap-4 md:gap-16 backdrop-blur-sm px-4">
               {landingFooterLinks.map((link) => (
                 <>
-                  <li
+                  <Link
+                    to={link.link}
                     key={link.id}
-                    className="text-white list-none hover:border-b-4 border-yellow-400 md:ml-14"
+                    className="list-none text-white cursor-pointer font-normal hover:border-b-4 hover:border-b-yellow-500"
                   >
-                    <a href={link.link}>{link.title}</a>
-                  </li>
+                    {link.title}
+                  </Link>
                 </>
               ))}
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </>
   );
 };
